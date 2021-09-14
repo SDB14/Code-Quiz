@@ -27,7 +27,10 @@ var quizQuestions = [
    
 // Global Variables that point to relavant classes or ids in HTML
 
-   var startButton = document.getElementById("startBtn")
+    var timerDiv = document.querySelector(".timer")   
+    var startScreenDiv = document.getElementById("start-screen")
+   var time = document.getElementById("time")
+    var startButton = document.getElementById("startBtn")
    var questionsDiv = document.getElementById("questions")
    var choicesDiv = document.getElementById("choices")
    var endScreenDiv = document.getElementById("end-screen")
@@ -36,8 +39,28 @@ var quizQuestions = [
 
 // Variables that keep track of quiz time / state
 
+   var timerState;
+   var quizTime = quizQuestions * 10;
+   var quizQuestionsIndex = 0;
+
 // Creat a start function that when clicked it starts timer and displays first question
 
+function setSeconds(){
+    quizTime = quizTime - 1
+    timerDiv.textContent = quizTime
+
+    if(
+        quizTime = 0
+    ){console.log("Quiz is Over") //insert quiz end function here
+}
+}
+function startQuiz(){
+    startScreenDiv.setAttribute("class","hide")
+    questionsDiv.removeAttribute("class")
+    timerState = setInterval(setSeconds,1000) //in order to stop timer need to use a clear interval with timerState ref
+    timerDiv.textContent = quizTime
+    //fire question cycle function
+}
 // Create a function that displays and cycles through questions
 
 // Create a function that determines if answer is correct or incorrect and if incorrect it will subtracts time from the clock
@@ -47,3 +70,5 @@ var quizQuestions = [
 // Create an end quiz function that is set off when timer reaches zero or no more questions are available
 
 // Create a function that when game is over it transitions to local storage for initials
+
+startButton.onclick=startQuiz
