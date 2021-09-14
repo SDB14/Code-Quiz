@@ -46,8 +46,8 @@ var quizQuestions = [
 // Creat a start function that when clicked it starts timer and displays first question
 
 function setSeconds(){
-    quizTime = quizTime - 1
-    timerDiv.textContent = quizTime
+    quizTime--
+    time.textContent = quizTime
 
     if(
         quizTime = 0
@@ -58,10 +58,26 @@ function startQuiz(){
     startScreenDiv.setAttribute("class","hide")
     questionsDiv.removeAttribute("class")
     timerState = setInterval(setSeconds,1000) //in order to stop timer need to use a clear interval with timerState ref
-    timerDiv.textContent = quizTime
+    time.textContent = quizTime
     //fire question cycle function
+    cycleQuestions()
 }
 // Create a function that displays and cycles through questions
+
+function cycleQuestions() {
+    var displayQuestion = quizQuestions[quizQuestionsIndex];
+    var titleEl = document.getElementById("question-title");
+    titleEl.textContent = displayQuestion.title;
+     choicesDiv.innerHTML = "";
+    displayQuestion.choices.forEach(function(choice, i) {
+     var questionNode = document.createElement("button");
+     questionNode.setAttribute("class", "choice");
+     questionNode.setAttribute("value", choice); //how to reference if answer is correct or incorrect
+     //questionNode.onclick = questionClick; // attaches a click event to each button to check accuracy
+     questionNode.textContent = choice;
+     choicesDiv.appendChild(questionNode);
+    });
+   }
 
 // Create a function that determines if answer is correct or incorrect and if incorrect it will subtracts time from the clock
 
