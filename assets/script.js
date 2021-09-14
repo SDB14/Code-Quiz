@@ -1,6 +1,40 @@
+var quizQuestions = [
+//quizQuestions[1].choices[1] = "curly brackets"
+    {
+     title: "Commonly used data types DO NOT include:",
+     choices: ["strings", "booleans", "alerts", "numbers"],
+     answer: "alerts"
+    },
+
+    {
+     title: "The condition in an if / else statement is enclosed within ____.",
+     choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+     answer: "parentheses"
+    },
+
+    {
+     title: "Arrays in JavaScript can be used to store ____.",
+     choices: [
+      "numbers and strings",
+      "other arrays",
+      "booleans",
+      "all of the above"
+     ],
+     answer: "all of the above"
+    },
+    
+   ];
+   
 // Global Variables that point to relavant classes or ids in HTML
 
-//Variables that keep track of quiz time / state
+   var startButton = document.getElementById("startBtn")
+   var questionsDiv = document.getElementById("questions")
+   var choicesDiv = document.getElementById("choices")
+   var endScreenDiv = document.getElementById("end-screen")
+   var submitButton = document.getElementById("submit")
+   var rightWrongDiv = document.getElementById("rightwrong")
+
+// Variables that keep track of quiz time / state
 
 // Creat a start function that when clicked it starts timer and displays first question
 
