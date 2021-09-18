@@ -27,7 +27,8 @@ var quizQuestions = [
    
 // Global Variables that point to relavant classes or ids in HTML
 
-    var timerDiv = document.querySelector(".timer")   
+
+   var timerDiv = document.querySelector(".timer")   
     var startScreenDiv = document.getElementById("start-screen")
    var time = document.getElementById("time")
     var startButton = document.getElementById("startBtn")
@@ -39,21 +40,24 @@ var quizQuestions = [
 
 // Variables that keep track of quiz time / state
 
-   var timerState;
-   var quizTime = quizQuestions * 10;
-   var quizQuestionsIndex = 0;
+
+var quizTime = quizQuestions.length * 10;
+var quizQuestionsIndex = 0;
+var timerState;
 
 // Creat a start function that when clicked it starts timer and displays first question
 
 function setSeconds(){
-    quizTime--
+    quizTime = quizTime - 1
     time.textContent = quizTime
 
-    if(
-        quizTime = 0
-    ){console.log("Quiz is Over") //insert quiz end function here
+   if(quizTime === 0){
+       console.log("Quiz is Over");
+       clearInterval(timerState);
+};
+//insert quiz end function here
 }
-}
+
 function startQuiz(){
     startScreenDiv.setAttribute("class","hide")
     questionsDiv.removeAttribute("class")
