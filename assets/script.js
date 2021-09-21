@@ -25,6 +25,7 @@ var quizQuestions = [
 
 ];
 
+
 // Global Variables that point to relavant classes or ids in HTML
 
 
@@ -75,7 +76,7 @@ function startQuiz() {
 // Create a function that displays and cycles through questions
 
 function cycleQuestions() {
-    
+
     var displayQuestion = quizQuestions[quizQuestionsIndex];
     var titleEl = document.getElementById("question-title");
     titleEl.textContent = displayQuestion.title;
@@ -87,26 +88,39 @@ function cycleQuestions() {
         questionNode.textContent = choice;
         choicesDiv.appendChild(questionNode);
         questionNode.onclick = quizQuestionsIndex;
-    
-         })
-        let questionNodeChild = document.getElementsByClassName("choice");
 
-        for (i of questionNodeChild) {
-            i.addEventListener('click', function () {
-               answerCheck(i.innerHTML);
-        
-            });
-        }
+    })
+if (quizQuestionsIndex < quizQuestions.length){
+    quizQuestionsIndex++;
+}
+
+var setQuestion = function() {
+    resetAnswers()
+    displayQuestion(arrayShuffledQuestions[quizQuestionIndex])
+}
+
+    var chosenAnswer = event.target.getAttribute("answer")
+
+
+    let questionNodeChild = document.getElementsByClassName("choice");
+
+    for (i of questionNodeChild) {
+        i.addEventListener('click', function () {
+            answerCheck(i.innerHTML);
+
+        });
+    }
 
 }
-            //check if answer is correct    
-        function answerCheck(answer) {
-    
-                    if (answer === quizQuestions[quizQuestionsIndex].answer){
-                    quizQuestionsIndex ++;
-                    }
-                   else {quizQuestionsIndex ++;
+//check if answer is correct    
+function answerCheck(answer) {
+
+    if (answer === quizQuestions[quizQuestionsIndex].answer) {
+        quizQuestionsIndex++;
+    }
+    else {
+        quizQuestionsIndex++;
 
 
-                }
-            }
+    }
+}
