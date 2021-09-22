@@ -22,7 +22,22 @@ var quizQuestions = [
         ],
         answer: "all of the above"
     },
+    {
+        title: "The condition in an if / else statement is enclosed within ____.",
+        choices: ["quotes", "curly brackets", "parentheses", "square brackets"],
+        answer: "parentheses"
+    },
 
+    {
+        title: "Arrays in JavaScript can be used to store ____.",
+        choices: [
+            "numbers and strings",
+            "other arrays",
+            "booleans",
+            "all of the above"
+        ],
+        answer: "all of the above"
+    },
 ];
 
 
@@ -87,40 +102,53 @@ function cycleQuestions() {
         questionNode.setAttribute("value", choice);
         questionNode.textContent = choice;
         choicesDiv.appendChild(questionNode);
-        questionNode.onclick = quizQuestionsIndex;
+        questionNode.onclick = answerCheck;
 
     })
-if (quizQuestionsIndex < quizQuestions.length){
-    quizQuestionsIndex++;
-}
+// if (quizQuestionsIndex < quizQuestions.length){
+//     quizQuestionsIndex++;
+// }
 
-var setQuestion = function() {
-    resetAnswers()
-    displayQuestion(arrayShuffledQuestions[quizQuestionIndex])
-}
+// var setQuestion = function() {
+//     resetAnswers()
+//     displayQuestion(arrayShuffledQuestions[quizQuestionIndex])
+// }
 
-    var chosenAnswer = event.target.getAttribute("answer")
+//     var chosenAnswer = event.target.getAttribute("answer")
 
 
-    let questionNodeChild = document.getElementsByClassName("choice");
+//     let questionNodeChild = document.getElementsByClassName("choice");
 
-    for (i of questionNodeChild) {
-        i.addEventListener('click', function () {
-            answerCheck(i.innerHTML);
+//     for (i of questionNodeChild) {
+//         i.addEventListener('click', function () {
+//             answerCheck(i.innerHTML);
 
-        });
-    }
+//         });
+//     }
 
-}
+ }
 //check if answer is correct    
-function answerCheck(answer) {
+function answerCheck() {
 
-    if (answer === quizQuestions[quizQuestionsIndex].answer) {
+    if (this.value === quizQuestions[quizQuestionsIndex].answer) {
+       
+       console.log("Corect!")
         quizQuestionsIndex++;
     }
     else {
+      
+      console.log("Wrong!")
         quizQuestionsIndex++;
 
 
     }
+        if (quizQuestionsIndex === quizQuestions.length){
+            //quiz end function
+        }
+
+        else {
+            cycleQuestions()
+        }
+
+
 }
